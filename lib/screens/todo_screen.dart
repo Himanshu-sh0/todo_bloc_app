@@ -21,7 +21,7 @@ class _TodoScreenState extends State<TodoScreen> {
         title: const Text("ToDo App"),
         centerTitle: true,
       ),
-      body: BlocBuilder<MainScreenBloc, MainScreenState>(
+      body: BlocBuilder<ToDoBloc, MainScreenState>(
         builder: (context, state) {
           // print("building todo bloc builder");
           return state.toDos.isEmpty
@@ -37,7 +37,7 @@ class _TodoScreenState extends State<TodoScreen> {
                         value: state.toDos[index].isSelected,
                         onChanged: (_) {
                           context
-                              .read<MainScreenBloc>()
+                              .read<ToDoBloc>()
                               .add(SelectToDoEvent(toDo: currenttoDo));
                         },
                       ),
@@ -51,7 +51,7 @@ class _TodoScreenState extends State<TodoScreen> {
                       trailing: InkWell(
                         onTap: () {
                           context
-                              .read<MainScreenBloc>()
+                              .read<ToDoBloc>()
                               .add(DeleteToDoEvent(toDo: currenttoDo));
                         },
                         child: const Icon(Icons.delete),
